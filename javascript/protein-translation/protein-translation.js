@@ -9,12 +9,11 @@ const proteinMap = {
 	STOP: ['UAA', 'UAG', 'UGA'],
 };
 
-const translate = rna => {
-	if (!Array(rna).length) return;
+export const translate = rna => {
+	if (!rna) return [];
 
 	let proteins = [];
 	const codons = String(rna).match(/.{1,3}/g);
-	console.log(codons);
 	for (const codon of codons) {
 		for (const protein in proteinMap) {
 			if (proteinMap['STOP'].includes(codon)) {
@@ -24,9 +23,14 @@ const translate = rna => {
 				proteins.push(protein);
 			}
 		}
+		//check for invalid
+		let check = '';
+		Object.keys(proteinMap).map(protein => {
+			if (proteinMap[protein].includes(codon)) {
+				check = protein;
+			}
+		});
+		if (!check) throw new Error('Invalid codon');
 	}
-
 	return proteins;
 };
-
-console.log(translate(['AUGUUUUCUUAAAUG']));
