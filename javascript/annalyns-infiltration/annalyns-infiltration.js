@@ -2,8 +2,8 @@ export function canExecuteFastAttack(knightIsAwake) {
   return !knightIsAwake;
 }
 
-export function canSpy(...enemies) {
-  return [...enemies].some(enemy => enemy);
+export function canSpy(enemies) {
+  return enemies.some(enemy => enemy);
 }
 
 export function canSignalPrisoner(archerIsAwake, prisonerIsAwake) {

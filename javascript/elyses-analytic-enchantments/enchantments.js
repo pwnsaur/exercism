@@ -19,5 +19,5 @@ export function getFirstOddCard(stack) {
 }
 
 export function getFirstEvenCardPosition(stack) {
-  return stack.indexOf(stack.find(card => card % 2 === 0));
+  return stack.findIndex(card => card % 2 === 0);
 }
